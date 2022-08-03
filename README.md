@@ -1,8 +1,9 @@
-# NIST LWC Hardware API implementation of Ascon v1.2 with Power Side-Channel Protection
+# NIST LWC Hardware API Implementation of Ascon with Power Side-Channel Protection
 
 * Hardware Design Group: Institute of Applied Information Processing and Communications, Graz, Austria
 * Primary Hardware Designers: Robert Primas (https://rprimas.github.io, rprimas@proton.me), Rishub Nagpal (https://rishub.xyz/, rishub.nagpal 'at' lamarr.at)
 * LWC candidate: Ascon
+* LWC Hardware API version: 1.2
 
 Ascon is a family of authenticated encryption and hashing algorithms designed to be lightweight and easy to implement, even with added countermeasures against side-channel attacks.
 Ascon has been selected as the primary choice for lightweight authenticated encryption in the final portfolio of the CAESAR competition (2014-2019) and is currently competing as a finalist in the NIST Lightweight Cryptography competition (2019-).
