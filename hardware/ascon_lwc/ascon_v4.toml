@@ -1,0 +1,60 @@
+name = "ascon_v4"
+description = "Implementation of Ascon-128 with W=32 and CCW=32, 2nd-order DOM"
+author = "Robert Primas, Rishub Nagpal"
+url = "https://ascon.iaik.tugraz.at/"
+license = "GNU General Public License (GPLv3)"
+
+[language]
+vhdl.standard = "2008"
+vhdl.synopsys = false
+
+[rtl]
+
+sources = [
+    "src_rtl/v4/design_pkg.vhd",
+    "src_rtl/v4/LWC_config_32_3s.vhd",
+    "src_rtl/LWC/NIST_LWAPI_pkg.vhd",
+    "src_rtl/v4/CryptoCore_SCA.vhd",
+    "src_rtl/v4/Round.vhd",
+    "src_rtl/LWC/data_sipo.vhd",
+    "src_rtl/LWC/key_piso.vhd",
+    "src_rtl/LWC/data_piso.vhd",
+    "src_rtl/LWC/FIFO.vhd",
+    "src_rtl/LWC/PreProcessor.vhd",
+    "src_rtl/LWC/PostProcessor.vhd",
+    "src_rtl/LWC/LWC_SCA.vhd",
+]
+top = 'LWC_SCA'
+clock.port = "clk"
+
+[tb]
+top = 'LWC_TB_SCA'
+sources = ["src_tb/v4/LWC_TB_SCA.vhd"]
+
+[tb.generics]
+G_FNAME_PDI.file = "KAT/32/pdi.txt"
+G_FNAME_SDI.file = "KAT/32/sdi.txt"
+G_FNAME_DO.file = "KAT/32/do.txt"
+G_TEST_MODE = 0                     # 0: no stall, 1: stall both inputs and output
+G_MAX_FAILURES = 0
+G_TIMEOUT_CYCLES = 1000
+G_PDI_STALLS = 7
+G_SDI_STALLS = 13
+G_DO_STALLS = 21
+G_RANDOM_STALL = true              # true
+
+[lwc]
+aead.algorithm = "ascon128v12"
+
+ports.pdi.bit_width = 32
+ports.sdi.bit_width = 32
+ports.pdi.num_shares = 3
+ports.sdi.num_shares = 3
+ports.rdi.bit_width = 960
+
+[sca_protection]
+target = ["dpa","cpa","timing"]
+masking schemes = ["DOM", "https://diglib.tugraz.at/download.php?id=5c80ea0c43a56&location=browse"]
+order = 2
+note = "the tag comparison at the end of decryption is unprotected"
+

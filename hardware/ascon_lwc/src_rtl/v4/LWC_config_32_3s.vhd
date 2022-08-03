@@ -1,0 +1,1 @@
+../v3/LWC_config_32_3s.vhd

@@ -1,0 +1,135 @@
+Notation common for all variants:
+
+Na, Nm, Nc, Nh : the number of complete blocks of associated data, plaintext, ciphertext, and hash message, respectively
+
+Ina, Inm, Inc, Inh : binary variables equal to 1 if the last block of the respective data type is incomplete, and 0 otherwise
+
+Bla, Blm, Blc, and Blh : the number of bytes in the incomplete block of associated data, plaintext, ciphertext, and hash message, respectively
+
+---------------------------------------------------------------------------
+v1 with CCW=CCSW=32:
+
+	Reference software:
+		aead: ascon128v12
+
+	Architecture description:
+		Ascon implementation with 128bit Key and 128bit Npub.
+		1st order DOM masking with low register count.
+		RW = 320 bit.
+		Unmasked tag comparison during decryption.
+		
+    AD block size = 64
+    Msg/Cph block size = 64
+
+	Ramp up:
+		1
+
+	Key setup time:
+		4
+    
+	Execution time of authenticated encryption:
+		See cycles_ascon128v12 when using 'CCW=32' and 'CYCLES_P = 2'
+	Execution time of authenticated decryption:
+		See cycles_ascon128v12 when using 'CCW=32' and 'CYCLES_P = 2'
+	Execution time of hashing:
+		See cycles_ascon128v12 when using 'CCW=32' and 'CYCLES_P = 2'
+
+    Authentication Throughput for large Na = 1.75 cycles/byte
+    Encryption Throughput for large Nm = 1.75 cycles/byte
+    Decryption Throughput for large Nc = 1.75 cycles/byte
+
+---------------------------------------------------------------------------
+v2 with CCW=CCSW=32:
+	
+	Reference software:
+		aead: ascon128v12
+
+	Architecture description:
+		Ascon implementation with 128bit Key and 128bit Npub.
+		1st order DOM masking with higher register count.
+		RW = 320 bit.
+		Unmasked tag comparison during decryption.
+		
+    AD block size = 64
+    Msg/Cph block size = 64
+
+	Ramp up:
+		1
+
+	Key setup time:
+		4
+    
+	Execution time of authenticated encryption:
+		See cycles_ascon128v12 when using 'CCW=32' and 'CYCLES_P = 2'
+	Execution time of authenticated decryption:
+		See cycles_ascon128v12 when using 'CCW=32' and 'CYCLES_P = 2'
+	Execution time of hashing:
+		See cycles_ascon128v12 when using 'CCW=32' and 'CYCLES_P = 2'
+
+    Authentication Throughput for large Na = 1.75 cycles/byte
+    Encryption Throughput for large Nm = 1.75 cycles/byte
+    Decryption Throughput for large Nc = 1.75 cycles/byte
+
+---------------------------------------------------------------------------
+v3 with CCW=CCSW=32:
+	
+	Reference software:
+		aead: ascon128v12
+
+	Architecture description:
+		Ascon implementation with 128bit Key and 128bit Npub.
+		2nd order DOM masking with low register count.
+		RW = 960 bit.
+		Unmasked tag comparison during decryption.
+		
+    AD block size = 64
+    Msg/Cph block size = 64
+
+	Ramp up:
+		1
+
+	Key setup time:
+		4
+    
+	Execution time of authenticated encryption:
+		See cycles_ascon128v12 when using 'CCW=32' and 'CYCLES_P = 2'
+	Execution time of authenticated decryption:
+		See cycles_ascon128v12 when using 'CCW=32' and 'CYCLES_P = 2'
+	Execution time of hashing:
+		See cycles_ascon128v12 when using 'CCW=32' and 'CYCLES_P = 2'
+
+    Authentication Throughput for large Na = 1.75 cycles/byte
+    Encryption Throughput for large Nm = 1.75 cycles/byte
+    Decryption Throughput for large Nc = 1.75 cycles/byte
+
+---------------------------------------------------------------------------
+v4 with CCW=CCSW=32:
+	
+	Reference software:
+		aead: ascon128v12
+
+	Architecture description:
+		Ascon implementation with 128bit Key and 128bit Npub.
+		2nd order DOM masking with higher register count.
+		RW = 960 bit.
+		Unmasked tag comparison during decryption.
+
+    AD block size = 64
+    Msg/Cph block size = 64
+
+	Ramp up:
+		1
+
+	Key setup time:
+		4
+
+	Execution time of authenticated encryption:
+		See cycles_ascon128v12 when using 'CCW=32' and 'CYCLES_P = 2'
+	Execution time of authenticated decryption:
+		See cycles_ascon128v12 when using 'CCW=32' and 'CYCLES_P = 2'
+	Execution time of hashing:
+		See cycles_ascon128v12 when using 'CCW=32' and 'CYCLES_P = 2'
+
+    Authentication Throughput for large Na = 1.75 cycles/byte
+    Encryption Throughput for large Nm = 1.75 cycles/byte
+    Decryption Throughput for large Nc = 1.75 cycles/byte
