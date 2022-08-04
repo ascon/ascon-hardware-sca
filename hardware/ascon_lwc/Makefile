@@ -58,16 +58,16 @@ MODULES_V4=\
 	src_tb/v4/LWC_TB_SCA
 
 v1: $(MODULES_V1)
-	$(info v1: More testbench output can be found in log.txt or failed_testvectors.txt)
+	$(info More v1 testbench output can be found in log.txt or failed_testvectors.txt)
 
 v2: $(MODULES_V2)
-	$(info v2: More testbench output can be found in log.txt or failed_testvectors.txt)
+	$(info More v2 testbench output can be found in log.txt or failed_testvectors.txt)
 
 v3: $(MODULES_V3)
-	$(info v3: More testbench output can be found in log.txt or failed_testvectors.txt)
+	$(info More v3 testbench output can be found in log.txt or failed_testvectors.txt)
 
 v4: $(MODULES_V4)
-	$(info v4: More testbench output can be found in log.txt or failed_testvectors.txt)
+	$(info More v4 testbench output can be found in log.txt or failed_testvectors.txt)
 
 # Binary depends on the object file
 %: %.o

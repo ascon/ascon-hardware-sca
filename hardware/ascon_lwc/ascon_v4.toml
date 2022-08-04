@@ -56,4 +56,3 @@ target = ["dpa","cpa","timing"]
 masking_schemes = ["DOM", "https://diglib.tugraz.at/download.php?id=5c80ea0c43a56&location=browse"]
 order = 2
 note = "the tag comparison at the end of decryption is unprotected"
-

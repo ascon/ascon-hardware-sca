@@ -34,10 +34,17 @@ entity LWC_TB IS
         G_RDI_STALLS       : natural  := 3;                        --! Number of cycles to stall rdi_valid
         G_RANDOM_STALL     : boolean  := false;                    --! Stall for a random number of cycles in the range [0..G_xx_STALLS], when G_TEST_MODE = 4
         G_CLK_PERIOD_PS    : positive := 10_000;                   --! Simulation clock period in picoseconds
-        G_FNAME_PDI        : string   := "KAT/v2/pdi_shared_2.txt"; --! Path to the input file containing cryptotvgen PDI testvector data
-        G_FNAME_SDI        : string   := "KAT/v2/sdi_shared_2.txt"; --! Path to the input file containing cryptotvgen SDI testvector data
-        G_FNAME_DO         : string   := "KAT/v2/do.txt";           --! Path to the input file containing cryptotvgen DO testvector data
-        G_FNAME_RDI        : string   := "KAT/v2/rdi.txt";          --! Path to the input file containing random data
+
+        -- G_FNAME_PDI        : string   := "KAT/v2/pdi_shared_2.txt"; --! Path to the input file containing cryptotvgen PDI testvector data
+        -- G_FNAME_SDI        : string   := "KAT/v2/sdi_shared_2.txt"; --! Path to the input file containing cryptotvgen SDI testvector data
+        -- G_FNAME_DO         : string   := "KAT/v2/do.txt";           --! Path to the input file containing cryptotvgen DO testvector data
+        -- G_FNAME_RDI        : string   := "KAT/v2/rdi.txt";          --! Path to the input file containing random data
+
+        G_FNAME_PDI        : string   := "KAT/v2_long/pdi_shared_2.txt"; --! Path to the input file containing cryptotvgen PDI testvector data
+        G_FNAME_SDI        : string   := "KAT/v2_long/sdi_shared_2.txt"; --! Path to the input file containing cryptotvgen SDI testvector data
+        G_FNAME_DO         : string   := "KAT/v2_long/do.txt";           --! Path to the input file containing cryptotvgen DO testvector data
+        G_FNAME_RDI        : string   := "KAT/v2_long/rdi.txt";          --! Path to the input file containing random data
+
         G_PRNG_RDI         : boolean  := true;                     --! Use testbench's internal PRNG to generate RDI input instead of the file `G_FNAME_RDI`
         G_RANDOM_SEED      : positive := 1;                        --! Internal PRNG seed, must be positive
         G_FNAME_LOG        : string   := "log.txt";                --! Path to the generated log file
