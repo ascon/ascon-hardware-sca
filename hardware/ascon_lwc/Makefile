@@ -1,5 +1,9 @@
 GHDL=ghdl
-GHDLFLAGS=--std=08
+GHDL_FLAGS=--std=08
+GHDL_OPTIMIZE := -O3
+GHDL_OPT := -frelaxed-rules --warn-no-vital-generic -frelaxed $(GHDL_OPTIMIZE)
+GHDL_ELAB_OPTS := --mb-comments 
+GHDL_WARNS := -Wbinding -Wreserved -Wlibrary -Wvital-generic -Wdelayed-checks -Wbody -Wspecs -Wunused --warn-no-runtime-error
 MODULES_V1=\
 	src_rtl/v1/LWC_config_32_2s.o\
 	src_rtl/LWC/NIST_LWAPI_pkg.o\
@@ -71,14 +75,15 @@ v4: $(MODULES_V4)
 
 # Binary depends on the object file
 %: %.o
-	$(GHDL) -e $(GHDLFLAGS) LWC_TB
-	$(GHDL) -r $(GHDLFLAGS) LWC_TB
+	$(GHDL) -e $(GHDL_FLAGS) $(GHDL_OPT) $(GHDL_WARNS) $(GHDL_ELAB_OPTS) LWC_TB
+	$(GHDL) -r $(GHDL_FLAGS) $(GHDL_OPT) $(GHDL_WARNS) $(GHDL_ELAB_OPTS) LWC_TB
 
 # Object file depends on source
 %.o: %.vhd
-	$(GHDL) -a $(GHDLFLAGS) $<
+	$(GHDL) -a $(GHDL_FLAGS) $(GHDL_OPT) $(GHDL_WARNS) $(GHDL_ELAB_OPTS) $<
 
 .PHONY: clean
 clean:
 	$(info Cleaning up...)
 	rm -f *.o *_TB_SCA work*.cf e*.lst failed_testvectors.txt result.txt log.txt lwc_tb
+
