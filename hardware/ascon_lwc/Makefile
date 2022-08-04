@@ -57,7 +57,7 @@ MODULES_V4=\
 	src_rtl/LWC/LWC_SCA.o\
 	src_tb/v4/LWC_TB_SCA
 
-v1: $(MODULES_V1) clean 
+v1: $(MODULES_V1) clean
 	$(info v1: More testbench output can be found in log.txt or failed_testvectors.txt)
 
 v2: $(MODULES_V2) clean
@@ -80,4 +80,4 @@ v4: $(MODULES_V4) clean
 .PHONY: clean
 clean:
 	$(info Cleaning up...)
-	rm -f *.o *_TB_SCA work*.cf e*.lst
+	rm -f *.o *_TB_SCA work*.cf e*.lst failed_testvectors.txt result.txt log.txt

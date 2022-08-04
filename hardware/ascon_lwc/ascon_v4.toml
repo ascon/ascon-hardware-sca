@@ -9,7 +9,6 @@ vhdl.standard = "2008"
 vhdl.synopsys = false
 
 [rtl]
-
 sources = [
     "src_rtl/v4/design_pkg.vhd",
     "src_rtl/v4/LWC_config_32_3s.vhd",
@@ -35,13 +34,13 @@ sources = ["src_tb/v4/LWC_TB_SCA.vhd"]
 G_FNAME_PDI.file = "KAT/32/pdi.txt"
 G_FNAME_SDI.file = "KAT/32/sdi.txt"
 G_FNAME_DO.file = "KAT/32/do.txt"
-G_TEST_MODE = 0                     # 0: no stall, 1: stall both inputs and output
+G_TEST_MODE = 0 # 0: no stall, 1: stall both inputs and output
 G_MAX_FAILURES = 0
 G_TIMEOUT_CYCLES = 1000
 G_PDI_STALLS = 7
 G_SDI_STALLS = 13
 G_DO_STALLS = 21
-G_RANDOM_STALL = true              # true
+G_RANDOM_STALL = true # true
 
 [lwc]
 aead.algorithm = "ascon128v12"
@@ -54,7 +53,7 @@ ports.rdi.bit_width = 960
 
 [sca_protection]
 target = ["dpa","cpa","timing"]
-masking schemes = ["DOM", "https://diglib.tugraz.at/download.php?id=5c80ea0c43a56&location=browse"]
+masking_schemes = ["DOM", "https://diglib.tugraz.at/download.php?id=5c80ea0c43a56&location=browse"]
 order = 2
 note = "the tag comparison at the end of decryption is unprotected"
 

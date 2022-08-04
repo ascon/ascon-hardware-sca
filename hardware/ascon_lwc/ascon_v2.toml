@@ -9,7 +9,6 @@ vhdl.standard = "2008"
 vhdl.synopsys = false
 
 [rtl]
-
 sources = [
     "src_rtl/v2/design_pkg.vhd",
     "src_rtl/v2/LWC_config_32_2s.vhd",
@@ -54,7 +53,7 @@ ports.rdi.bit_width = 320
 
 [sca_protection]
 target = ["dpa","cpa","timing"]
-masking schemes = ["DOM", "https://diglib.tugraz.at/download.php?id=5c80ea0c43a56&location=browse"]
+masking_schemes = ["DOM", "https://diglib.tugraz.at/download.php?id=5c80ea0c43a56&location=browse"]
 order = 1
 note = "the tag comparison at the end of decryption is unprotected"
 
