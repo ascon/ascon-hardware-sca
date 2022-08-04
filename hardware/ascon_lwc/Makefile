@@ -57,20 +57,21 @@ MODULES_V4=\
 	src_rtl/LWC/LWC_SCA.o\
 	src_tb/v4/LWC_TB_SCA
 
-v1: $(MODULES_V1) clean
+v1: $(MODULES_V1)
 	$(info v1: More testbench output can be found in log.txt or failed_testvectors.txt)
 
-v2: $(MODULES_V2) clean
+v2: $(MODULES_V2)
 	$(info v2: More testbench output can be found in log.txt or failed_testvectors.txt)
 
-v3: $(MODULES_V3) clean
+v3: $(MODULES_V3)
 	$(info v3: More testbench output can be found in log.txt or failed_testvectors.txt)
 
-v4: $(MODULES_V4) clean
+v4: $(MODULES_V4)
 	$(info v4: More testbench output can be found in log.txt or failed_testvectors.txt)
 
 # Binary depends on the object file
 %: %.o
+	$(GHDL) -e $(GHDLFLAGS) LWC_TB
 	$(GHDL) -r $(GHDLFLAGS) LWC_TB
 
 # Object file depends on source
@@ -80,4 +81,4 @@ v4: $(MODULES_V4) clean
 .PHONY: clean
 clean:
 	$(info Cleaning up...)
-	rm -f *.o *_TB_SCA work*.cf e*.lst failed_testvectors.txt result.txt log.txt
+	rm -f *.o *_TB_SCA work*.cf e*.lst failed_testvectors.txt result.txt log.txt lwc_tb
