@@ -9,7 +9,6 @@ vhdl.standard = "2008"
 vhdl.synopsys = false
 
 [rtl]
-
 sources = [
     "src_rtl/v1/design_pkg.vhd",
     "src_rtl/v1/LWC_config_32_2s.vhd",
