@@ -75,7 +75,7 @@ ARCHITECTURE behavior OF Asconp IS
     ----------------------------------------------------------------------------
     --! Combinatorial logic of first affine layer
     ----------------------------------------------------------------------------
-    FUNCTION affine_1st(s2 : shared_state2_t; rcon : STD_LOGIC_VECTOR(3 DOWNTO 0))
+    FUNCTION affine_1st(s2 : shared_state2_t; rc : STD_LOGIC_VECTOR(3 DOWNTO 0))
         RETURN shared_state_t IS
         VARIABLE ss : shared_state_t(4 DOWNTO 0);
         VARIABLE rc_temp : STD_LOGIC_VECTOR(3 DOWNTO 0);
@@ -89,7 +89,7 @@ ARCHITECTURE behavior OF Asconp IS
             END LOOP;
         END LOOP;
         FOR share IN 0 TO D LOOP
-            rc_temp := STD_LOGIC_VECTOR(unsigned(rounds_12) - unsigned(rcon));
+            rc_temp := STD_LOGIC_VECTOR(unsigned(rounds_12) - unsigned(rc));
             ss(0)(share) := ss(0)(share) XOR ss(4)(share);
             IF share = 0 THEN
                 ss(2)(share)(7 DOWNTO 0) := ss(2)(share)(7 DOWNTO 0) XOR ss(1)(share)(7 DOWNTO 0) XOR (STD_LOGIC_VECTOR(unsigned(rounds_16) - unsigned(rc_temp)) & rc_temp);
