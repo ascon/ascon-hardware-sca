@@ -133,7 +133,6 @@ ARCHITECTURE behavioral OF CryptoCore_SCA IS
 
     -- Ascon-p
     SIGNAL asconp_out_s : shared_state2_t;
-    SIGNAL rdi_s : shared_word2_t;
 
     -- Debug Signals (unmasked)
     SIGNAL debug_pad1_s : STD_LOGIC_VECTOR(CCW - 1 DOWNTO 0);
@@ -706,7 +705,6 @@ BEGIN
     --! Ascon FSM
     ----------------------------------------------------------------------------
     p_ascon_fsm : PROCESS (clk)
-        VARIABLE rdi_temp : STD_LOGIC_VECTOR(CCW - 1 DOWNTO 0);
     BEGIN
         IF rising_edge(clk) THEN
             IF (rst = '1') THEN
