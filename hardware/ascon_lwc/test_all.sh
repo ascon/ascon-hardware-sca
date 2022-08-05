@@ -19,7 +19,7 @@ do
 	if [[ $res == *"PASS"* ]]; then
 	  	printf "${GREEN}PASS!${NC}\n"
 	else
-    	printf "${RED}FAIL!${NC}\n"
+    		printf "${RED}FAIL!${NC}\n"
 	fi
 	make clean
 done
