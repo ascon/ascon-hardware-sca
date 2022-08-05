@@ -32,7 +32,7 @@ The hardware reference implementation of Ascon without countermeasures against p
 
 ## Quick Start
 
-- Install LWC testvecor generation scripts:
+- Install testvector generation scripts:
 `pip3 install software/cryptotvgen`
 - Compile software reference implementations:
 `cryptotvgen --prepare_libs --candidates_dir=software/ascon_ref`
