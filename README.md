@@ -32,16 +32,30 @@ The hardware reference implementation of Ascon without countermeasures against p
 
 ## Quick Start
 
-- Install testvector generation scripts:
-`pip3 install software/cryptotvgen`
-- Compile software reference implementations:
-`cryptotvgen --prepare_libs --candidates_dir=software/ascon_ref`
 - Install the GHDL open-source VHDL simulator (tested with version 0.37 and 1.0 and 2.0):
-`sudo apt install ghdl`
+  - `sudo apt install ghdl`
 - Execute VHDL testbench for v1 (or other variants):
-`cd hardware/ascon_lwc`
-`make v1`
+  - `cd hardware/ascon_lwc`
+  - `make v1`
+
+## Generating New Testvectors from Software
+
+- Install testvector generation scripts:
+  - `pip3 install software/cryptotvgen`
+- Compile Ascon software reference implementations:
+  - `cryptotvgen --prepare_libs --candidates_dir=software/ascon_ref`
+- Locate testvector generation scripts:
+  - `cd software/cryptotvgen/examples`
+- Run (and optionally modify) a testvector generation script:
+  - `python genkat.py`
+- Replace existing testvectors (KAT) of v1 with the newley generated ones:
+  - `mv testvectors/ascon128v12_32 ../../../hardware/ascon_lwc/KAT/v1`
+- Generate masked KAT files from the unmasked ones:
+  - `cd ../../../hardware/ascon_lwc`
+  - `python gen_shared.py --design ascon_v1.toml --folder ./KAT/v1`
+- Execute VHDL testbench for v1:
+  - `make v1`
 
 ## Preliminary Security Evaluation
 
-We have successfully formally verified the correctness of our masked implementations of Ascon-p in the glitch-extended probing model and for the respective protection order using the tool Coco [[GHP+21]](https://www.usenix.org/system/files/sec21fall-gigerl.pdf).
+We have successfully formally verified the correctness of our masked implementations of Ascon-p in the glitch-extended probing model (aka robust probing model) and for the respective protection order using the tool Coco [[GHP+21]](https://www.usenix.org/system/files/sec21fall-gigerl.pdf).

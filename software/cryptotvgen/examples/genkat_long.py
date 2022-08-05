@@ -14,11 +14,7 @@ script_dir = Path(__file__).parent.resolve()
 if __name__ == '__main__':
     blocks_per_segment = None
     ccw = 32
-    print(
-        f'Generating test-vectors for io={ccw}' +
-        (f" and max_block_per_sgmt={blocks_per_segment}" if blocks_per_segment else "") + "..."
-    )
-    dest_dir = f'testvectors/v1_v3_long{"_multi_segments" if blocks_per_segment else ""}_{ccw}'
+    dest_dir = f'testvectors/ascon128v12_long_{ccw}'
     # ========================================================================
     # Create the list of arguments for cryptotvgen
     args = [
