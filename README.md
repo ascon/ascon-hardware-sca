@@ -49,7 +49,9 @@ The hardware reference implementation of Ascon without countermeasures against p
 - Run (and optionally modify) a testvector generation script:
   - `python genkat.py`
 - Replace existing testvectors (KAT) of v1 with the newley generated ones:
-  - `mv testvectors/ascon128v12_32 ../../../hardware/ascon_lwc/KAT/v1`
+  - `mv testvectors/ascon128v12_32 testvectors/v1`
+  - `rm -r ../../../hardware/ascon_lwc/KAT/v1`
+  - `mv testvectors/v1 ../../../hardware/ascon_lwc/KAT`
 - Generate masked KAT files from the unmasked ones:
   - `cd ../../../hardware/ascon_lwc`
   - `python gen_shared.py --design ascon_v1.toml --folder ./KAT/v1`
