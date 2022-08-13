@@ -2,7 +2,7 @@
 
 - Hardware Design Group: Institute of Applied Information Processing and Communications, Graz, Austria
 - Primary Hardware Designers:
-  - Robert Primas (https://rprimas.github.io, rprimas@proton.me),
+  - Robert Primas (https://rprimas.github.io, rprimas 'at' proton.me),
   - Rishub Nagpal (https://rishub.xyz/, rishub.nagpal 'at' lamarr.at)
 - LWC candidate: Ascon
 - LWC Hardware API version: 1.2.0
@@ -32,13 +32,13 @@ The hardware reference implementation of Ascon without countermeasures against p
 
 ## Quick Start
 
-- Install the GHDL open-source VHDL simulator (tested with version 0.37 and 1.0 and 2.0):
+- Install the GHDL open-source VHDL simulator (tested with version 1.0 and 2.0):
   - `sudo apt install ghdl`
 - Execute VHDL testbench for v1 (or other variants):
   - `cd hardware/ascon_lwc`
   - `make v1`
 
-## Generating New Testvectors from Software
+## Generating new Testvectors from Software
 
 - Install testvector generation scripts:
   - `pip3 install software/cryptotvgen`
@@ -62,7 +62,7 @@ The hardware reference implementation of Ascon without countermeasures against p
 
 We have successfully formally verified the correctness of our masked implementations of Ascon-p in the glitch-extended probing model (aka robust probing model) and for the respective protection order using the tool Coco [[GHP+21]](https://www.usenix.org/system/files/sec21fall-gigerl.pdf).
 
-## Acknoledgements
+## Acknowledgements
 
 This code base is based on version 1.2.0 of the [LWC Hardware API Development Package](https://github.com/GMUCERG/LWC) that was mainly developed by the Cryptographic Engineering Research Group [(CERG)](https://cryptography.gmu.edu) at George Mason University (GMU).
 
