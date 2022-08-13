@@ -1,20 +1,22 @@
 --===============================================================================================--
 --! @file       LWC_TB.vhd
 --! @brief      NIST Lightweight Cryptography Testbench
---! @project    GMU LWC Package
---! @author     Ekawat (ice) Homsirikamol
---! @author     Kamyar Mohajerani
---! @copyright  Copyright (c) 2015, 2020, 2021, 2022 Cryptographic Engineering Research Group
---!             ECE Department, George Mason University Fairfax, VA, U.S.A.
+--!
+--! @author     Robert Primas <rprimas@proton.me>
+--!
+--! @copyright  Copyright (c) 2021 IAIK, Graz University of Technology, AUSTRIA
 --!             All rights Reserved.
---! @version    1.2.0
---! @license    This project is released under the GNU Public License.
---!             The license and distribution terms for this file may be
---!             found in the file LICENSE in this distribution or at
+--!
+--! @license    This project is released under the GNU Public License.          
+--!             The license and distribution terms for this file may be         
+--!             found in the file LICENSE in this distribution or at            
 --!             http://www.gnu.org/licenses/gpl-3.0.txt
+--!
 --! @note       This is publicly available encryption source code that falls
 --!             under the License Exception TSU (Technology and software-
 --!             unrestricted)
+--!
+--! @note       This code was adapted for the Ascon AEAD scheme.
 --===============================================================================================--
 
 library ieee;
@@ -22,39 +24,33 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 use std.textio.all;
 
+use work.LWC_TB_config;
 use work.NIST_LWAPI_pkg.all;
 
 entity LWC_TB IS
     generic(
-        G_MAX_FAILURES     : natural  := 1;                        --! Maximum number of failures before stopping the simulation
-        G_TEST_MODE        : natural  := 0;                        --! 0: normal, 1: stall both sdi/pdi_valid and do_ready, 2: stall sdi/pdi_valid, 3: stall do_ready, 4: Timing (cycle) measurement 
-        G_PDI_STALLS       : natural  := 3;                        --! Number of cycles to stall pdi_valid
-        G_SDI_STALLS       : natural  := 3;                        --! Number of cycles to stall sdi_valid
-        G_DO_STALLS        : natural  := 3;                        --! Number of cycles to stall do_ready
-        G_RDI_STALLS       : natural  := 3;                        --! Number of cycles to stall rdi_valid
-        G_RANDOM_STALL     : boolean  := false;                    --! Stall for a random number of cycles in the range [0..G_xx_STALLS], when G_TEST_MODE = 4
-        G_CLK_PERIOD_PS    : positive := 10_000;                   --! Simulation clock period in picoseconds
-
-        G_FNAME_PDI        : string   := "KAT/v2/pdi_shared_2.txt"; --! Path to the input file containing cryptotvgen PDI testvector data
-        G_FNAME_SDI        : string   := "KAT/v2/sdi_shared_2.txt"; --! Path to the input file containing cryptotvgen SDI testvector data
-        G_FNAME_DO         : string   := "KAT/v2/do.txt";           --! Path to the input file containing cryptotvgen DO testvector data
-        G_FNAME_RDI        : string   := "KAT/v2/rdi.txt";          --! Path to the input file containing random data
-
-        -- G_FNAME_PDI        : string   := "KAT/v2_long/pdi_shared_2.txt"; --! Path to the input file containing cryptotvgen PDI testvector data
-        -- G_FNAME_SDI        : string   := "KAT/v2_long/sdi_shared_2.txt"; --! Path to the input file containing cryptotvgen SDI testvector data
-        -- G_FNAME_DO         : string   := "KAT/v2_long/do.txt";           --! Path to the input file containing cryptotvgen DO testvector data
-        -- G_FNAME_RDI        : string   := "KAT/v2_long/rdi.txt";          --! Path to the input file containing random data
-
-        G_PRNG_RDI         : boolean  := true;                     --! Use testbench's internal PRNG to generate RDI input instead of the file `G_FNAME_RDI`
-        G_RANDOM_SEED      : positive := 1;                        --! Internal PRNG seed, must be positive
-        G_FNAME_LOG        : string   := "log.txt";                --! Path to the generated log file
-        G_FNAME_TIMING     : string   := "timing.txt";             --! Path to the generated timing measurements (when G_TEST_MODE=4)
-        G_FNAME_FAILED_TVS : string   := "failed_testvectors.txt"; --! Path to the generated log of failed testvector words
-        G_FNAME_RESULT     : string   := "result.txt";             --! Path to the generated result file containing 0 or 1  -- REDUNDANT / NOT USED
-        G_PRERESET_WAIT_NS : natural  := 0;                        --! Time (in nanoseconds) to wait before reseting UUT. Xilinx GSR takes 100ns, required for post-synth simulation
-        G_INPUT_DELAY_NS   : natural  := 0;                        --! Input delay in nanoseconds
-        G_TIMEOUT_CYCLES   : integer  := 0;                        --! Fail simulation after this many consecutive cycles of data I/O inactivity, 0: disable timeout
-        G_VERBOSE_LEVEL    : integer  := 0                         --! Verbosity level
+        G_MAX_FAILURES     : natural  := 1;                         --! Maximum number of failures before stopping the simulation
+        G_TEST_MODE        : natural  := 0;                         --! 0: normal, 1: stall both sdi/pdi_valid and do_ready, 2: stall sdi/pdi_valid, 3: stall do_ready, 4: Timing (cycle) measurement 
+        G_PDI_STALLS       : natural  := 3;                         --! Number of cycles to stall pdi_valid
+        G_SDI_STALLS       : natural  := 3;                         --! Number of cycles to stall sdi_valid
+        G_DO_STALLS        : natural  := 3;                         --! Number of cycles to stall do_ready
+        G_RDI_STALLS       : natural  := 3;                         --! Number of cycles to stall rdi_valid
+        G_RANDOM_STALL     : boolean  := false;                     --! Stall for a random number of cycles in the range [0..G_xx_STALLS], when G_TEST_MODE = 4
+        G_CLK_PERIOD_PS    : positive := 10_000;                    --! Simulation clock period in picoseconds
+        G_FNAME_PDI        : string   := LWC_TB_config.G_FNAME_PDI; --! Path to the input file containing cryptotvgen PDI testvector data
+        G_FNAME_SDI        : string   := LWC_TB_config.G_FNAME_SDI; --! Path to the input file containing cryptotvgen SDI testvector data
+        G_FNAME_DO         : string   := LWC_TB_config.G_FNAME_DO;  --! Path to the input file containing cryptotvgen DO testvector data
+        G_FNAME_RDI        : string   := LWC_TB_config.G_FNAME_RDI; --! Path to the input file containing random data
+        G_PRNG_RDI         : boolean  := true;                      --! Use testbench's internal PRNG to generate RDI input instead of the file `G_FNAME_RDI`
+        G_RANDOM_SEED      : positive := 1;                         --! Internal PRNG seed, must be positive
+        G_FNAME_LOG        : string   := "log.txt";                 --! Path to the generated log file
+        G_FNAME_TIMING     : string   := "timing.txt";              --! Path to the generated timing measurements (when G_TEST_MODE=4)
+        G_FNAME_FAILED_TVS : string   := "failed_testvectors.txt";  --! Path to the generated log of failed testvector words
+        G_FNAME_RESULT     : string   := "result.txt";              --! Path to the generated result file containing 0 or 1  -- REDUNDANT / NOT USED
+        G_PRERESET_WAIT_NS : natural  := 0;                         --! Time (in nanoseconds) to wait before reseting UUT. Xilinx GSR takes 100ns, required for post-synth simulation
+        G_INPUT_DELAY_NS   : natural  := 0;                         --! Input delay in nanoseconds
+        G_TIMEOUT_CYCLES   : integer  := 0;                         --! Fail simulation after this many consecutive cycles of data I/O inactivity, 0: disable timeout
+        G_VERBOSE_LEVEL    : integer  := 0                          --! Verbosity level
     );
 end LWC_TB;
 
@@ -644,10 +640,10 @@ begin
         end if;
         --
         if num_failures > 0 then
-            write(logMsg, string'("[FAIL] "));
+            write(logMsg, string'("[FAIL]"));
             report "[FAIL]  :: T_T" severity note;
         else
-            write(logMsg, string'("[PASS] "));
+            write(logMsg, string'("[PASS]"));
             report "[PASS]  :: ^0^" severity note;
         end if;
         file_close(do_file);

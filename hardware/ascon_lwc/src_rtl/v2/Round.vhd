@@ -1,17 +1,15 @@
 --------------------------------------------------------------------------------
---! @file       CryptoCore.vhd
---! @brief      Implementation of Ascon-p using domain-oriented masking
+--! @file       Round.vhd
+--! @brief      Implementation of Ascon-p using Domain-oriented Masking (DOM)
 --!
---! @author     Robert Primas <rprimas@protonmail.com>, Rishub Nagpal <rishub.nagpal@lamarr.at>
---! @copyright  Copyright (c) 2020 IAIK, Graz University of Technology, AUSTRIA
+--! @author     Robert Primas <rprimas@proton.me>
+--! @author     Rishub Nagpal <rishub.nagpal@lamarr.at>
+--! @copyright  Copyright (c) 2021 IAIK, Graz University of Technology, AUSTRIA
 --!             All rights Reserved.
 --! @license    This project is released under the GNU Public License.          
 --!             The license and distribution terms for this file may be         
 --!             found in the file LICENSE in this distribution or at            
---!             http://www.gnu.org/licenses/gpl-3.0.txt                         
---! @note       This is publicly available encryption source code that falls    
---!             under the License Exception TSU (Technology and software-       
---!             unrestricted)                                                  
+--!             http://www.gnu.org/licenses/gpl-3.0.txt                                                     
 --------------------------------------------------------------------------------
 
 --------------------------------------------------------------------------------

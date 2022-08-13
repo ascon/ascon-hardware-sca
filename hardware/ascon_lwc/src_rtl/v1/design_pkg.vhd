@@ -1,16 +1,20 @@
 --------------------------------------------------------------------------------
 --! @file       design_pkg.vhd
---! @brief      Package for the Cipher Core.
+--! @brief      Package for the Crypto Core.
 --!
---! @author     Michael Tempelmeier <michael.tempelmeier@tum.de>
---! @author     Patrick Karl <patrick.karl@tum.de>
---! @copyright  Copyright (c) 2019 Chair of Security in Information Technology
---!             ECE Department, Technical University of Munich, GERMANY
+--! @author     Robert Primas <rprimas@proton.me>
+--!
+--! @author     Rishub Nagpal <rishub.nagpal@lamarr.at>
+--!
+--! @copyright  Copyright (c) 2021 IAIK, Graz University of Technology, AUSTRIA
 --!             All rights Reserved.
+--!
 --! @license    This project is released under the GNU Public License.
 --!             The license and distribution terms for this file may be
 --!             found in the file LICENSE in this distribution or at
 --!             http://www.gnu.org/licenses/gpl-3.0.txt
+--!
+--! @note       This code was adapted for the Ascon AEAD scheme.                                                        
 -------------------------------------------------------------------------------
 
 

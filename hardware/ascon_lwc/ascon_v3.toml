@@ -9,6 +9,8 @@ vhdl.standard = "2008"
 vhdl.synopsys = false
 
 [rtl]
+top = 'LWC_SCA'
+clock.port = "clk"
 sources = [
     "src_rtl/v3/design_pkg.vhd",
     "src_rtl/v3/LWC_config_32_3s.vhd",
@@ -21,14 +23,15 @@ sources = [
     "src_rtl/LWC/FIFO.vhd",
     "src_rtl/LWC/PreProcessor.vhd",
     "src_rtl/LWC/PostProcessor.vhd",
-    "src_rtl/LWC/LWC_SCA.vhd",
+    "src_rtl/LWC/LWC_SCA.vhd"
 ]
-top = 'LWC_SCA'
-clock.port = "clk"
 
 [tb]
 top = 'LWC_TB_SCA'
-sources = ["src_tb/v3/LWC_TB_SCA.vhd"]
+sources = [
+    "src_tb/v3/LWC_TB_config.vhd",
+    "src_tb/LWC_TB_SCA.vhd"
+]
 
 [tb.generics]
 G_FNAME_PDI.file = "KAT/32/pdi.txt"

@@ -5,7 +5,7 @@
   - Robert Primas (https://rprimas.github.io, rprimas@proton.me),
   - Rishub Nagpal (https://rishub.xyz/, rishub.nagpal 'at' lamarr.at)
 - LWC candidate: Ascon
-- LWC Hardware API version: 1.2
+- LWC Hardware API version: 1.2.0
 
 Ascon is a family of authenticated encryption and hashing algorithms designed to be lightweight and easy to implement, even with added countermeasures against side-channel attacks.
 Ascon has been selected as the primary choice for lightweight authenticated encryption in the final portfolio of the [CAESAR competition](https://competitions.cr.yp.to/caesar.html) (2014-2019) and is currently competing as a finalist in the NIST standardization effort for [Lightweight Cryptography](https://csrc.nist.gov/Projects/lightweight-cryptography/finalists) (2019-).
@@ -61,3 +61,11 @@ The hardware reference implementation of Ascon without countermeasures against p
 ## Preliminary Security Evaluation
 
 We have successfully formally verified the correctness of our masked implementations of Ascon-p in the glitch-extended probing model (aka robust probing model) and for the respective protection order using the tool Coco [[GHP+21]](https://www.usenix.org/system/files/sec21fall-gigerl.pdf).
+
+## Acknoledgements
+
+This code base is based on version 1.2.0 of the [LWC Hardware API Development Package](https://github.com/GMUCERG/LWC) that was mainly developed by the Cryptographic Engineering Research Group [(CERG)](https://cryptography.gmu.edu) at George Mason University (GMU).
+
+Parts of the development package have been developed by the Department of Electrical and Computer Engineering [(ECE)](https://www.ei.tum.de/en/ei/welcome/) at Technical University of Munich (TUM).
+
+The Ascon-specific modifiations have been developed by the Institute of Applied Information Processing and Communications [(IAIK)](https://www.iaik.tugraz.at/) at Graz University of Technology (TUG).

@@ -1,10 +1,10 @@
-GHDL=ghdl
-GHDL_FLAGS=--std=08
+GHDL := ghdl
+GHDL_FLAGS := --std=08
 GHDL_OPTIMIZE := -O3
 GHDL_OPT := -frelaxed-rules --warn-no-vital-generic -frelaxed $(GHDL_OPTIMIZE)
 GHDL_ELAB_OPTS := --mb-comments 
 GHDL_WARNS := -Wbinding -Wreserved -Wlibrary -Wvital-generic -Wdelayed-checks -Wbody -Wspecs -Wunused --warn-no-runtime-error
-MODULES_V1=\
+MODULES_V1 :=\
 	src_rtl/v1/LWC_config_32_2s.o\
 	src_rtl/LWC/NIST_LWAPI_pkg.o\
 	src_rtl/v1/design_pkg.o\
@@ -17,8 +17,9 @@ MODULES_V1=\
 	src_rtl/LWC/PostProcessor.o\
 	src_rtl/LWC/PreProcessor.o\
 	src_rtl/LWC/LWC_SCA.o\
-	src_tb/v1/LWC_TB_SCA
-MODULES_V2=\
+	src_tb/v1/LWC_TB_config.o\
+	src_tb/LWC_TB_SCA
+MODULES_V2 :=\
 	src_rtl/v2/LWC_config_32_2s.o\
 	src_rtl/LWC/NIST_LWAPI_pkg.o\
 	src_rtl/v2/design_pkg.o\
@@ -31,8 +32,9 @@ MODULES_V2=\
 	src_rtl/LWC/PostProcessor.o\
 	src_rtl/LWC/PreProcessor.o\
 	src_rtl/LWC/LWC_SCA.o\
-	src_tb/v2/LWC_TB_SCA
-MODULES_V3=\
+	src_tb/v2/LWC_TB_config.o\
+	src_tb/LWC_TB_SCA
+MODULES_V3 :=\
 	src_rtl/v3/LWC_config_32_3s.o\
 	src_rtl/LWC/NIST_LWAPI_pkg.o\
 	src_rtl/v3/design_pkg.o\
@@ -45,8 +47,9 @@ MODULES_V3=\
 	src_rtl/LWC/PostProcessor.o\
 	src_rtl/LWC/PreProcessor.o\
 	src_rtl/LWC/LWC_SCA.o\
-	src_tb/v3/LWC_TB_SCA
-MODULES_V4=\
+	src_tb/v3/LWC_TB_config.o\
+	src_tb/LWC_TB_SCA
+MODULES_V4 :=\
 	src_rtl/v4/LWC_config_32_3s.o\
 	src_rtl/LWC/NIST_LWAPI_pkg.o\
 	src_rtl/v4/design_pkg.o\
@@ -59,7 +62,8 @@ MODULES_V4=\
 	src_rtl/LWC/PostProcessor.o\
 	src_rtl/LWC/PreProcessor.o\
 	src_rtl/LWC/LWC_SCA.o\
-	src_tb/v4/LWC_TB_SCA
+	src_tb/v4/LWC_TB_config.o\
+	src_tb/LWC_TB_SCA
 
 v1: $(MODULES_V1)
 	$(info More v1 testbench output can be found in log.txt or failed_testvectors.txt)
@@ -86,4 +90,3 @@ v4: $(MODULES_V4)
 clean:
 	$(info Cleaning up...)
 	rm -f *.o *_TB_SCA work*.cf e*.lst failed_testvectors.txt result.txt log.txt lwc_tb
-
