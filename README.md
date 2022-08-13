@@ -1,4 +1,4 @@
-# NIST LWC Hardware Design of Ascon with Protection against Power Side-Channel Attacks
+# NIST LWC Hardware Design of [Ascon v1.2](https://ascon.iaik.tugraz.at) with Protection against Power Side-Channel Attacks
 
 - Hardware Design Group: Institute of Applied Information Processing and Communications, Graz, Austria
 - Primary Hardware Designers:
@@ -7,7 +7,7 @@
 - LWC candidate: Ascon
 - LWC Hardware API version: 1.2.0
 
-Ascon is a family of authenticated encryption and hashing algorithms designed to be lightweight and easy to implement, even with added countermeasures against side-channel attacks.
+[Ascon](https://ascon.iaik.tugraz.at) is a family of authenticated encryption and hashing algorithms designed to be lightweight and easy to implement, even with added countermeasures against side-channel attacks.
 Ascon has been selected as the primary choice for lightweight authenticated encryption in the final portfolio of the [CAESAR competition](https://competitions.cr.yp.to/caesar.html) (2014-2019) and is currently competing as a finalist in the NIST standardization effort for [Lightweight Cryptography](https://csrc.nist.gov/Projects/lightweight-cryptography/finalists) (2019-).
 
 The provided protected implementations of Ascon-128 feature Domain-oriented masking (DOM) [[GMK16]](https://eprint.iacr.org/2016/486.pdf) with protection orders 1 and 2. The concrete implementations are inspired by the description of masked Ascon implementation in Section 5 from [[GM17]](https://eprint.iacr.org/2017/103.pdf). All implementations require 2 cycles to compute one permutation round, the masking schemes hence adds one additional cycle of latency per round. Absorption and squeezing happens concurrently for all shares and is hence as fast as in case of unprotected implementations. The throughput of masked implementations is hence increased to 1.75 cycles/byte when using a 32-bit interface (per share). In comparison, a corresponding unprotected implementations achieve a throughput of 1 cycle/byte. The implementations are not optimized for low randomness requirements and hence require the expected 320 bits (960 bits) of fresh randomness every other cycle when computing DOM-AND gates on the 320-bit Ascon state in case of 1st (2nd) order implementations. We want to point out that techniques such as Changing of the Guards [[Dae16]](https://eprint.iacr.org/2016/1061.pdf) could be used to significantly reduce the amount of required fresh randomness. The tag comparison during decryption is currently simply implemented in an unmasked fashion.
@@ -48,7 +48,7 @@ The hardware reference implementation of Ascon without countermeasures against p
   - `cd software/cryptotvgen/examples`
 - Run (and optionally modify) a testvector generation script:
   - `python genkat.py`
-- Replace existing testvectors (KAT) of v1 with the newley generated ones:
+- Replace existing testvectors (KAT) of v1 with the newly generated ones:
   - `mv testvectors/ascon128v12_32 testvectors/v1`
   - `rm -r ../../../hardware/ascon_lwc/KAT/v1`
   - `mv testvectors/v1 ../../../hardware/ascon_lwc/KAT`
@@ -68,4 +68,5 @@ This code base is based on version 1.2.0 of the [LWC Hardware API Development Pa
 
 Parts of the development package have been developed by the Department of Electrical and Computer Engineering [(ECE)](https://www.ei.tum.de/en/ei/welcome/) at Technical University of Munich (TUM).
 
-The Ascon-specific modifiations have been developed by the Institute of Applied Information Processing and Communications [(IAIK)](https://www.iaik.tugraz.at/) at Graz University of Technology (TUG).
+The Ascon-specific modifications have been developed by the Institute of Applied Information Processing and Communications [(IAIK)](https://iaik.tugraz.at/) at Graz University of Technology (TUG).
+
