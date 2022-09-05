@@ -60,7 +60,9 @@ The hardware reference implementation of Ascon without countermeasures against p
 
 ## Preliminary Security Evaluation
 
-We have successfully formally verified the correctness of our masked implementations of Ascon-p in the glitch-extended probing model (aka robust probing model) and for the respective protection order using the tool Coco [[GHP+21]](https://www.usenix.org/system/files/sec21fall-gigerl.pdf).
+A previous version of this masked hardware design (see `ASCON_IAIK.zip`) of Ascon was submitted to the [Call for Protected Hardware Implementations](https://cryptography.gmu.edu/athena/LWC/Call_for_Protected_Hardware_Implementations.pdf) of the NIST standardization effort for Lightweight Cryptography. Several side-channel evaluation labs have since evalauted it's protection against Differential Power Analysis. The results are available [here]( https://cryptography.gmu.edu/athena/index.php?id=LWC).
+
+We have also successfully formally verified the correctness of the masked implementation of Ascon-*p* in `ASCON_IAIK.zip` in the glitch-extended probing model (aka robust probing model) and for the respective protection order using the tool Coco [[GHP+21]](https://www.usenix.org/system/files/sec21fall-gigerl.pdf).
 
 ## Acknowledgements
 
